@@ -1,12 +1,15 @@
 ##  Rails JQuery Demo
 
 ### Step One
-
+* bundle
 * Generate a scaffold controller for the Song model.
      
-     <code>rails g scaffold Song name:string duration:integer price:float</code>
-
-
+     ``rails g scaffold Song name:string duration:integer price:float``
+* Init the DB.  
+	``rake db:drop``  
+	``rake db:create``  
+	``rake db:migrate``  
+	
 ### Step Two
 
 * Create a seed file for songs and seed db.  
