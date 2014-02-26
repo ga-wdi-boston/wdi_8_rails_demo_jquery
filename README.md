@@ -30,23 +30,23 @@
 * Update the contents of the app/views/songs/index.html.erb file to the below.  
    
     ``<ul id='songs'>``  
-    ``<%= @songs.each do |song| %>``  
-    ``<li>Name: <%=song.name %>, Duration(minutes): <%=song.duration %>, Price(dollars): <%=song.price %> </li>``  
-    ``<% end %>``  
-    ``</ul>``  
-    ``<br>``  
+	``<%= @songs.each do |song| %>``  
+	``<li id='song_<%=song.id%>'>Name: <%=song.name %>``  
+  	``<%= link_to "Show", song_path(song), remote: true  %>``  
+	``</li>``  
+	``<% end %>``  
+	``</ul>``  
+	``<br>``  
 
-    ``<%= link_to 'New Song', new_song_path, id: 'new_link', remote: true %>``  
-	
+	``<%= link_to 'New Song', new_song_path, id: 'new_link', remote: true %>``  
 
-* Notice that we've added the 'remote: true' to the new song link. This will make 
-    the form submit an ajax request. It will *not* reload the page.
+* Notice that we've added the 'remote: true' to the new and show song link. This will make the form submit an ajax request. It will *not* reload the page.
 
 
 * Create a new.js.erb file with this contents.  
       `` $('#new_link').hide().after('<%= j render("form") %>')``
 
-* When we reload a form is inserted into the page under the list of songs. How is done?
+* A form will be inserted into the page under the list of songs. How is done?
 
 The javascript in the new.js.erb file is inserted into the page and run.
 
@@ -57,8 +57,6 @@ When you click the new song link:
 4. This ERB generated javascript is sent back to the browser.  
 5. Then the browser will run this javascript/jquery and insert the form _after_ the  element with the id of 'new_link'.
 	
-
-
 
 
 ### Step Four
@@ -78,7 +76,7 @@ When you click the new song link:
 
     ``$('#new_task').remove();``  
     ``$('#new_link').show();``  
-    ``$('#songs').append("<li>"+ "Name: <%=@song.name %>" + ", Duration(minutes): <%=@song.duration %>" + ", Price(dollars): <%=@song.price %>" + "</li>");``
+    ``$('#songs').append("<li id='song_" + "<%=@song.id%>'" + "> Name: <%=@song.name %> " + '<%= link_to "Show", song_path(@song), remote: true  %>' + "</li>");``
     ``$('#new_song').hide();``   
 
 * This will use jquery selectors to change the index page.
@@ -86,10 +84,11 @@ When you click the new song link:
 ## Step Five
 
 * Create a file show.js.erb with this contents.  
-     ``<li><%=song.name%></li>``
+     ``$('#song_<%=@song.id%>').html("<li><%=@song.name%>,  Duration(minutes): <%=@song.duration%>, Price(dollars): <%=@song.price %></li>");``
 
 * Goto http://localhost:3000/songs and create a new song.  
   Notice how there are *NO* page reloads when creating new songs. All 
    the creations are done via ajax and jquery.
 
 ## Resources
+[JQuery & Ajax Railscast](http://railscasts.com/episodes/136-jquery-ajax-revised)
