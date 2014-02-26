@@ -1,4 +1,4 @@
 $('#new_task').remove();
 $('#new_link').show();
-$('#songs').append("<li>"+ "Name: <%=@song.name %>" + ", Duration(minutes): <%=@song.duration %>" + ", Price(dollars): <%=@song.price %>" + "</li>");
+$('#songs').append("<li id='song_" + "<%=@song.id%>'" + "> Name: <%=@song.name %> " + '<%= link_to "Show", song_path(@song), remote: true  %>' + "</li>");
 $('#new_song').hide();

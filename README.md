@@ -93,5 +93,3 @@ When you click the new song link:
    the creations are done via ajax and jquery.
 
 ## Resources
-
-

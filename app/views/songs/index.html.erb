@@ -1,6 +1,8 @@
 <ul id='songs'>
 <%= @songs.each do |song| %>
-<li>Name: <%=song.name %>, Duration(minutes): <%=song.duration %>, Price(dollars): <%=song.price %> </li>
+<li id='song_<%=song.id%>'>Name: <%=song.name %>
+  <%= link_to "Show", song_path(song), remote: true  %>
+</li>
 <% end %>
 </ul>
 <br>
