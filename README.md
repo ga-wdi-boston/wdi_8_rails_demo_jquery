@@ -46,16 +46,16 @@
 * Create a new.js.erb file with this contents.  
       `` $('#new_link').hide().after('<%= j render("form") %>')``
 
-* A form is inserted into the page under the list of songs. How is done?
+* When we reload a form is inserted into the page under the list of songs. How is done?
 
 The javascript in the new.js.erb file is inserted into the page and run.
 
 When you click the new song link:  
-1. A HTTP Request is sent to Rails with the Accept HTTP Header set to 'application/javascript'.  
-2. Rails knows that this kind of request, requesting javascript, will be handled by the new.js.erb file. This is a mapping between the Mime type _application/javascript_ and the new.js.erb file.  
+1. A HTTP Ajax Request is sent to Rails with the Accept HTTP Header set to 'application/javascript'.  
+2. Rails knows that this kind of request is for javascript and will be handled by the new.js.erb file. Rails keeps a mapping between the Mime type, _application/javascript_, and files with a js extention. In this case it will be the new.js.erb file.  
 3. ERB will process the code between the <%= %> and insert it. This is contents of the form partial.  
-4. This content, javascript, sent back to the browser.  
-5. Then the browser will run this javascript/jquery to insert the form _after_ the  element with the id of 'new_link'.
+4. This ERB generated javascript is sent back to the browser.  
+5. Then the browser will run this javascript/jquery and insert the form _after_ the  element with the id of 'new_link'.
 	
 
 
@@ -74,7 +74,7 @@ When you click the new song link:
     ``   .. ``  
     ``end``  
     
-* Add a create.js.erb file with the below contents.  n
+* Add a create.js.erb file with the below contents.
 
     ``$('#new_task').remove();``  
     ``$('#new_link').show();``  
