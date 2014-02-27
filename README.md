@@ -90,5 +90,9 @@ When you click the new song link:
   Notice how there are *NO* page reloads when creating new songs. All
    the creations are done via ajax and jquery.
 
+## Lab
+
+  Remove UJS, javascript injection, and replace it will javascript code included in the app/assets/javascripts/songs.js file. *Make sure you remove the songs.js.coffee file. Why?*
+
 ## Resources
 [JQuery & Ajax Railscast](http://railscasts.com/episodes/136-jquery-ajax-revised)
