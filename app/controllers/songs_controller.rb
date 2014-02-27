@@ -5,6 +5,9 @@ class SongsController < ApplicationController
   # GET /songs.json
   def index
     @songs = Song.all
+
+    # needed for new Song form in index view
+    @song = Song.new
   end
 
   # GET /songs/1
